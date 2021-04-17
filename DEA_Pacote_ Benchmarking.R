@@ -1,6 +1,6 @@
 rm(list=ls(all=TRUE)) #apagar todas listas e variáveis
 getwd() #importante saber qual o diretório de trabalho em utilização
-setwd('C:/Users/leogp/Documents/R/Leonardo_Arquivos/DEA_2021') #Definir uma pasta de trabalho
+setwd('C:/Users/USUARIO/Documents/R/PASTA') #Definir uma pasta de trabalho
 dir() # ver quais os arquivos existentes no diretório em uso
 #==================== Instalar e carregar os pacotes necessários
 if(!require(dplyr)) install.packages("dplyr")
@@ -62,15 +62,15 @@ help(package="Benchmarking") #Para ler sobre os pacotes a serem utilizados
 ?Benchmarking 
 
 #==================== Definir as variáveis INSUMOs x
-insumos <- as.matrix(with(dados, cbind(dados$Input_Comissao_LAI)))
+insumos <- as.matrix(with(dados, cbind(dados$input1)))
 
 #==================== Definir as variáveis PRODUTOs y
-produtos <- as.matrix(with(dados, cbind(dados$Output_Transparencia_Ativa, 
-                                        dados$Output_Transparencia_Passiva,
-                                        dados$Output_Acessibilidade_ASES)))
+produtos <- as.matrix(with(dados, cbind(dados$Output1, 
+                                        dados$Output2,
+                                        dados$Output3)))
 
 #==================== Definir a variável que contém o nome das DMUs
-dmu <- dados$ï..DMU 
+dmu <- dados$NomeDMU 
 
 #==================== Modelo BCC Orientado ao Input
 bcc.in <- dea(insumos, produtos, RTS="vrs", ORIENTATION="in", SLACK=TRUE) # eff BCC insumo orientado com folgas
