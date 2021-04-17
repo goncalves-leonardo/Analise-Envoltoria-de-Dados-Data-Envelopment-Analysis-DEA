@@ -12,17 +12,18 @@ library(corrplot)
 if(!require(readxl)) install.packages("readxl")
 library(readxl)
 
-dados <- read.csv(choose.files(), header = TRUE, sep = ",") # abrir o arquivo ‘.csv’ que contém as variáveis
+#==================== Leitura do arquivo ‘.csv’ que contém as variáveis
+dados <- read.csv(choose.files(), header = TRUE, sep = ",")
 head(dados)  
-glimpse(dados) #mostrar o tipo de cada variável do data frame
-# Início - criar matriz de correlação:
-matriz <-  cor(dados[2:5], method = "spearman") #entre colchetes determina as colunas a serem usadas na análise
-#spearman ou kendall para não paramétrica e pearson para paramétrica
+glimpse(dados) # mostrar o tipo de cada variável do data frame
+# Criar matriz de correlação:
+matriz <-  cor(dados[2:5], method = "spearman") # Valores dentro dos colchetes determinam as colunas da matriz a serem usadas na análise
+# Resumidamente, Spearman ou kendall para não paramétrica e pearson para paramétrica
 head(matriz)
 # Arredondando para duas casas decimais:
-matriz.correlacao.variaveis <- round(cor(dados[2:5], method = "spearman"), 2)#spearman ou pearson
+matriz.correlacao.variaveis <- round(cor(dados[2:5], method = "spearman"), 2)
 head(matriz.correlacao.variaveis)
-## Criando a representaçãoo gráfica da correlação das variáveis
+## Criando a representaçãoo gráfica de correlação das variáveis
 par(mfrow=c(1,1))
 corrplot(matriz.correlacao.variaveis, method="pie", 
          type="upper", order="alphabet",add = FALSE, 
