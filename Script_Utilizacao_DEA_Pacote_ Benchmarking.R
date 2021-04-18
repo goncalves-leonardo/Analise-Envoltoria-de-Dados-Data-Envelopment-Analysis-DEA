@@ -47,7 +47,7 @@ matriz.Hmisc$P # matriz de valor p
 matriz.Hmisc$n # matriz número de variáveis
 
 #==================== plot
-corrplot(matriz.Hmisc$r,p.mat=matriz.Hmisc$P,sig.level=0.005,method="pie",type="upper",diag=FALSE)
+corrplot(matriz.Hmisc$r,p.mat=matriz.Hmisc$P,sig.level=0.05,method="pie",type="upper",diag=FALSE)
 
 #==================== alternativa para matriz
 if(!require(PerformanceAnalytics)) install.packages("PerformanceAnalytics")
