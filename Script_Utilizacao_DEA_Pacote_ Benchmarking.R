@@ -241,7 +241,7 @@ frequencia.pareto.VRS
 
 #==================== Exportar para Excel - primeira opção
 writexl::write_xlsx(list(dados, dt.eff.bcc.out.insumo, dt.eff.bcc.out.produto, rendimentos,
-                         dmus.pares.produto, somente.dmus.eff.bcc.out ), 
+                         dmus.pares.produto, somente.dmus.eff.bcc.out, frequencia.pareto.VRS ), 
                     path = paste("Resultados_DEA_", 
                                  format(Sys.time(),"%d_%m_%Y"),".xlsx", 
                                  sep = "", collapse = NULL), col_names = TRUE, 
@@ -269,4 +269,3 @@ xlsx.SalvarNomeGuia <- function (file, ...)
 xlsx.SalvarNomeGuia("Resultados_DEA.xlsx",
                     dados, dt.eff.bcc.out.insumo, dt.eff.bcc.out.produto, rendimentos,
                     dmus.pares.produto, somente.dmus.eff.bcc.out, frequencia.pareto.VRS)
-
