@@ -9,15 +9,15 @@ head(dados)
 glimpse(dados) #mostrar o tipo de cada variável do data frame
 
 #==================== Definir as variáveis INSUMOs x
-insumos <- as.matrix(with(dados, cbind(dados$Input1)))
+insumos <- as.matrix(with(dados, cbind(dados$Input_1 )))
 
 #==================== Definir as variáveis PRODUTOs y
-produtos <- as.matrix(with(dados, cbind(dados$Output1, 
-                                        dados$Output2,
-                                        dados$Output3)))
+produtos <- as.matrix(with(dados, cbind(dados$Output_1 , 
+                                        dados$Output_2,
+                                        dados$Output_3)))
 
 #==================== Definir a variável que contém o nome das DMUs
-dmu <- dados$ï..DMU 
+dmu <- dados$DMU 
 
 # ATENÇÃO! Desta etapa para frente poderá selecionar tudo e clicar em RUN
 
@@ -203,7 +203,9 @@ dea.plot(x,y,RTS="crs",add=TRUE,lty="dotted",col="red")
 if(!require(qcc)) install.packages("qcc")
 library(qcc) 
 
-pareto.chart(dados.frequencia, ylab = "Freq. Ineficiência Relativa", xlab = "DMUs", ylab2="Porcentagem Acumulada",las=2)
+dados.frequencia <- (rendimentos$VRS) #definir os dados para analisar a distribuição de frequência
+names(dados.frequencia) <- rendimentos$DMU
+pareto.chart(dados.frequencia, main = "Gráfico de Pareto", ylab = "Freq. Eficiência Relativa", xlab = "DMUs", ylab2="Porcentagem Acumulada",las=2)
 
 # Alterando a função do pacote qcc
 func.grafico.pareto <- function (data, plot = TRUE, ...) 
@@ -231,13 +233,10 @@ func.grafico.pareto <- function (data, plot = TRUE, ...)
 }
 
 # Utilizando a função com alterações
-dados.frequencia <- (rendimentos$VRS) #definir os dados para analisar a distribuição de frequência
-names(dados.frequencia) <- rendimentos$DMU
-frequencia.pareto.VRS <- data.frame(cbind( func.grafico.pareto(dados.frequencia, ylab = "Freq. DMUs Ineficientes")))
+frequencia.pareto.VRS <- data.frame(cbind( func.grafico.pareto(dados.frequencia, ylab = "Freq. Eficiência Relativa")))
 
 # Analisar sob a ótica da Regra 80/20
 frequencia.pareto.VRS
-
 
 #==================== Exportar para Excel - primeira opção
 writexl::write_xlsx(list(dados, dt.eff.bcc.out.insumo, dt.eff.bcc.out.produto, rendimentos,
